@@ -19,7 +19,7 @@ jobs:
       
       - name: Read userkey & Login  #读取账号并登录
         env: 
-          userkeys: ${{ toJson(secrets) }}   # 由secrets 提供userkey
+          userKeys: ${{ toJson(secrets) }}   # 由secrets 提供userkey
         run: python Login.py
         
       - name: Commit & Push  #更新仓库保持活跃
