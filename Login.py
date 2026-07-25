@@ -27,15 +27,15 @@ def login_by_authkey(userKey):
             "user-identifier": userKey,
         })
         
-        login = s.get(f"{base_url}/api/user/login", timeout=15)
+        login = s.get(f"{base_url}/api/user/login")
         login.raise_for_status()
         print("login:", login.json())
     
-        sync_items = s.get(f"{base_url}/api/user/sync/items", timeout=15)
+        sync_items = s.get(f"{base_url}/api/user/sync/items")
         sync_items.raise_for_status()
         print("sync items:", sync_items.json())
     
-        login_popup = s.get(f"{base_url}/api/user/login/popup/get", timeout=15)
+        login_popup = s.get(f"{base_url}/api/user/login/popup/get")
         login_popup.raise_for_status()
         print("login popup:", login_popup.json())
 
