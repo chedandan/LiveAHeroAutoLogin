@@ -42,7 +42,7 @@ def login_by_authkey(userKey):
 if __name__ == '__main__':
     userKeys = eval(os.environ['userKeys'])
     #os.system("echo %s | openssl enc -e -aes-256-cbc -a -pbkdf2 -iter 5 -k 'abc'" %(userKeys['AUTH_KEY_PIPI2']))    #userKey丢了可以加密输出来找回
-    pattern = re.compile(r'userKey_.*')                #匹配secrets中的userKey
+    pattern = re.compile(r'USERKEY_.*')                #匹配secrets中的userKey
     for item in userKeys.keys():
         if pattern.match(item):
             userKey = userKeys[item]
