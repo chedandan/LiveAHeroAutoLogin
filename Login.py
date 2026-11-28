@@ -1,3 +1,4 @@
+import json
 import os, re, random, requests
 
 with open("UA.txt", "r") as f:
@@ -29,18 +30,18 @@ def login_by_authkey(userKey):
         
         login = s.get(f"{base_url}/api/user/login")
         login.raise_for_status()
-        print("login:", login.json())
+        print("login status:", login.status_code)
     
         sync_items = s.get(f"{base_url}/api/user/sync/items")
         sync_items.raise_for_status()
-        print("sync items:", sync_items.json())
+        print("sync items status:", sync_items.status_code)
     
         login_popup = s.get(f"{base_url}/api/user/login/popup/get")
         login_popup.raise_for_status()
-        print("login popup:", login_popup.json())
+        print("login popup status:", login_popup.status_code)
 
 if __name__ == '__main__':
-    userKeys = eval(os.environ['userKeys'])
+    userKeys = json.loads(os.environ['userKeys'])
     #os.system("echo %s | openssl enc -e -aes-256-cbc -a -pbkdf2 -iter 5 -k 'abc'" %(userKeys['AUTH_KEY_PIPI2']))    #userKey丢了可以加密输出来找回
     pattern = re.compile(r'USERKEY_.*')                #匹配secrets中的userKey
     for item in userKeys.keys():
